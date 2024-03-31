@@ -1,13 +1,15 @@
 package com.plekhanov;
 
 
+import com.plekhanov.dto.Price;
+import com.plekhanov.service.PriceService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PriceTest {
+public class PriceServiceTest {
 
     @Test
     void newPriceIsIncludedOldTest() {
@@ -20,7 +22,7 @@ public class PriceTest {
         resultPrices.add(new Price("122856", 1, 1, "20.01.2013 00:00:00", "23.01.2013 23:59:59", 60));
         resultPrices.add(new Price("122856", 1, 1, "23.01.2013 23:59:59", "31.01.2013 23:59:59", 50));
 
-        Assertions.assertThat(resultPrices).containsExactlyInAnyOrderElementsOf(Price.joinPrice(prices, newPrices));
+        Assertions.assertThat(resultPrices).containsExactlyInAnyOrderElementsOf(PriceService.joinPrice(prices, newPrices));
     }
     @Test
     void newPriceIsCrossOldTest() {
@@ -34,7 +36,7 @@ public class PriceTest {
         resultPrices.add(new Price("122856", 1, 1, "20.01.2013 00:00:00", "13.02.2013 23:59:59", 110));
         resultPrices.add(new Price("122856", 1, 1, "13.02.2013 23:59:59", "20.02.2013 23:59:59", 120));
 
-        Assertions.assertThat(resultPrices).containsExactlyInAnyOrderElementsOf(Price.joinPrice(prices, newPrices));
+        Assertions.assertThat(resultPrices).containsExactlyInAnyOrderElementsOf(PriceService.joinPrice(prices, newPrices));
     }
     @Test
     void newPriceIsClosesOldTest() {
@@ -50,7 +52,7 @@ public class PriceTest {
         resultPrices.add(new Price("122856", 1, 1, "20.01.2013 00:00:00", "10.02.2013 23:59:59", 85));
         resultPrices.add(new Price("122856", 1, 1, "10.02.2013 23:59:59", "20.02.2013 23:59:59", 90));
 
-        Assertions.assertThat(resultPrices).containsExactlyInAnyOrderElementsOf(Price.joinPrice(prices, newPrices));
+        Assertions.assertThat(resultPrices).containsExactlyInAnyOrderElementsOf(PriceService.joinPrice(prices, newPrices));
     }
     @Test
     void newPriceHasDuplicateTest() {
@@ -67,7 +69,7 @@ public class PriceTest {
         resultPrices.add(new Price("122856", 1, 1, "20.01.2013 23:59:59", "30.01.2013 23:59:59", 87));
         resultPrices.add(new Price("122856", 1, 1, "30.01.2013 23:59:59", "20.02.2013 23:59:59", 90));
 
-        Assertions.assertThat(resultPrices).containsExactlyInAnyOrderElementsOf(Price.joinPrice(prices, newPrices));
+        Assertions.assertThat(resultPrices).containsExactlyInAnyOrderElementsOf(PriceService.joinPrice(prices, newPrices));
     }
 
     @Test
@@ -88,7 +90,7 @@ public class PriceTest {
         resultPrices.add(new Price("6654", 1, 2, "12.01.2013 00:00:00", "13.01.2013 00:00:00", 4000));
         resultPrices.add(new Price("6654", 1, 2, "13.01.2013 00:00:00", "31.01.2013 00:00:00", 5000));
 
-        Assertions.assertThat(resultPrices).containsExactlyInAnyOrderElementsOf(Price.joinPrice(prices, newPrices));
+        Assertions.assertThat(resultPrices).containsExactlyInAnyOrderElementsOf(PriceService.joinPrice(prices, newPrices));
     }
     @Test
     void newPriceIsNotIncludedTest() {
@@ -102,6 +104,6 @@ public class PriceTest {
         resultPrices.add(new Price("122856", 1, 1, "31.01.2013 23:59:59", "20.02.2013 23:59:59", 120));
         resultPrices.add(new Price("122856", 1, 1, "22.02.2013 00:00:00", "28.02.2013 23:59:59", 110));
 
-        Assertions.assertThat(resultPrices).containsExactlyInAnyOrderElementsOf(Price.joinPrice(prices, newPrices));
+        Assertions.assertThat(resultPrices).containsExactlyInAnyOrderElementsOf(PriceService.joinPrice(prices, newPrices));
     }
 }
