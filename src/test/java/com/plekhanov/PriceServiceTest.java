@@ -106,4 +106,16 @@ public class PriceServiceTest {
 
         Assertions.assertThat(resultPrices).containsExactlyInAnyOrderElementsOf(PriceService.joinPrice(prices, newPrices));
     }
+    @Test
+    void newPriceIsEmptyTest() {
+        List<Price> prices = new ArrayList<>();
+        prices.add(new Price("122856", 1, 1, "01.01.2013 00:00:00", "31.01.2013 23:59:59", 100));
+        prices.add(new Price("122856", 1, 1, "31.01.2013 23:59:59", "20.02.2013 23:59:59", 120));
+        List<Price> newPrices = new ArrayList<>();
+        List<Price> resultPrices = new ArrayList<>();
+        resultPrices.add(new Price("122856", 1, 1, "01.01.2013 00:00:00", "31.01.2013 23:59:59", 100));
+        resultPrices.add(new Price("122856", 1, 1, "31.01.2013 23:59:59", "20.02.2013 23:59:59", 120));
+
+        Assertions.assertThat(resultPrices).containsExactlyInAnyOrderElementsOf(PriceService.joinPrice(prices, newPrices));
+    }
 }
