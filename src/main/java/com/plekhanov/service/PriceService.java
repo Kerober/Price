@@ -59,9 +59,7 @@ public class PriceService {
                                 if (availPrice.getBegin().before(newPrice.getBegin())) {
                                     availablePrices.add(newPrice);
                                     Price price = new Price(availPrice.getProductCode(), availPrice.getNumber(), availPrice.getDepart()
-                                            , "01.01.2013 00:00:00", "01.01.2013 00:00:00", availPrice.getValue());
-                                    price.setBegin(newPrice.getEnd());
-                                    price.setEnd(availPrice.getEnd());
+                                            , newPrice.getEnd(), availPrice.getEnd(), availPrice.getValue());
                                     availablePrices.add(price);
                                     availPrice.setEnd(newPrice.getBegin());
                                     count++;
