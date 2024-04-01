@@ -10,12 +10,13 @@ import java.util.stream.Collectors;
 
 @Data
 public class Price {
+
     private long id;
     private final String productCode;
     private final int number;
     private final int depart;
-    private Date begin;
-    private Date end;
+    private final Date begin;
+    private final Date end;
     private final long value;
 
 

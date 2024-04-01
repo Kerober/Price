@@ -76,13 +76,12 @@ public class PriceService {
                         }
                     }
                 }
-
-
             }
             if (count == 0) {
                 availablePrices.add(newPrice);
             }
-            availablePrices = availablePrices.stream().filter(price -> (price.getEnd().after(price.getBegin())))
+            availablePrices = availablePrices.stream()
+                    .filter(price -> (price.getEnd().after(price.getBegin())))
                     .sorted(Comparator.comparing(Price::getProductCode).thenComparing(Price::getDepart).thenComparing(Price::getNumber))
                     .distinct()
                     .collect(Collectors.toList());
